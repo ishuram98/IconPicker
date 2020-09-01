@@ -10,8 +10,8 @@ import { IconPickComponent } from '../icon-pick/icon-pick.component';
 })
 export class InitialPageComponent implements OnInit {
 
-  public iconName;
-  public className;
+  public iconName = '';
+  public className = '';
   public dialogRef;
 
   constructor(private dashboardService: IconService, public dialog: MatDialog) { }
@@ -20,13 +20,12 @@ export class InitialPageComponent implements OnInit {
     this.dashboardService.resultI$.subscribe(
       (icon) => {
         this.dialogRef.close();
-        if (icon.search('icofont') === -1) {
-          console.log(this.iconName);
-          this.iconName = icon;
-          this.className = icon;
-        } else {
+        if (icon.includes('icofont')) {
           this.iconName = '';
           this.className = icon;
+        } else {
+          this.iconName = icon;
+          this.className = 'material-icons';
         }
       });
   }
