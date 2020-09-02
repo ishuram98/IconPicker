@@ -21,7 +21,7 @@ export class IconPickComponent implements OnInit {
   toggleM: boolean;
   toggleL: boolean;
   public term = '';
-  fontSize = 20;
+  fontSize = 30;
 
 
   public IconPicker = {
@@ -540,23 +540,23 @@ export class IconPickComponent implements OnInit {
   }
 
   sizeToggle(size: number): void {
-    if (size === 20) {
+    if (size === 30) {
       this.toggleS = true;
       this.toggleM = false;
-      this.toggleL = false;
-      this.fontSize = 20;
-    }
-    if (size === 30) {
-      this.toggleS = false;
-      this.toggleM = true;
       this.toggleL = false;
       this.fontSize = 30;
     }
     if (size === 40) {
       this.toggleS = false;
+      this.toggleM = true;
+      this.toggleL = false;
+      this.fontSize = 40;
+    }
+    if (size === 50) {
+      this.toggleS = false;
       this.toggleM = false;
       this.toggleL = true;
-      this.fontSize = 40;
+      this.fontSize = 50;
     }
   }
 
