@@ -17,12 +17,11 @@ export class IconPickComponent implements OnInit {
   public titleChosen = 'Icon Categories';
   hideAll = true;
   hideCategory = true;
-  toggleS = true ;
+  toggleS = true;
   toggleM: boolean;
   toggleL: boolean;
   public term = '';
   fontSize = 20;
-  titleSize = 14;
 
 
   public IconPicker = {
@@ -546,21 +545,18 @@ export class IconPickComponent implements OnInit {
       this.toggleM = false;
       this.toggleL = false;
       this.fontSize = 20;
-      this.titleSize = 14;
     }
     if (size === 30) {
       this.toggleS = false;
       this.toggleM = true;
       this.toggleL = false;
       this.fontSize = 30;
-      this.titleSize = 14;
     }
     if (size === 40) {
       this.toggleS = false;
       this.toggleM = false;
       this.toggleL = true;
       this.fontSize = 40;
-      this.titleSize = 14;
     }
   }
 
