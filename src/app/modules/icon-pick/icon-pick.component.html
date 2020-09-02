@@ -1,32 +1,42 @@
-<div class="row">
+<div class="parent">
   <!--Displaying Menu Items-->
-  <button class="top-left" mat-raised-button [matMenuTriggerFor]="categories">{{titleChosen}} <mat-icon>
-      keyboard_arrow_down</mat-icon></button>
-  <mat-menu #categories="matMenu">
-    <button mat-menu-item (click)="displayAll()">All</button>
-    <button mat-menu-item [matMenuTriggerFor]="Material">Material</button>
-    <button mat-menu-item [matMenuTriggerFor]="Icofont">Icofont</button>
-  </mat-menu>
+  <div class="child1">
+    <button style="background-color: #e7e7e7;" mat-raised-button [matMenuTriggerFor]="categories">{{titleChosen}} <mat-icon>
+        keyboard_arrow_down</mat-icon></button>
+    <mat-menu #categories="matMenu">
+      <button mat-menu-item (click)="displayAll()">All</button>
+      <button mat-menu-item [matMenuTriggerFor]="Material">Material</button>
+      <button mat-menu-item [matMenuTriggerFor]="Icofont">Icofont</button>
+    </mat-menu>
 
-  <mat-menu #Material="matMenu">
-    <div *ngFor="let icon of IconPicker.Material |keyvalue">
-      <button mat-menu-item (click)="selectIcon(selectedOption = icon.key,'Material')">
-        {{icon.key}}
-      </button>
-    </div>
-  </mat-menu>
+    <mat-menu #Material="matMenu">
+      <div *ngFor="let icon of IconPicker.Material |keyvalue">
+        <button mat-menu-item (click)="selectIcon(selectedOption = icon.key,'Material')">
+          {{icon.key}}
+        </button>
+      </div>
+    </mat-menu>
 
 
-  <mat-menu #Icofont="matMenu">
-    <div *ngFor="let icon of IconPicker.IcoFont | keyvalue">
-      <button mat-menu-item (click)="selectIcon(selectedOption = icon.key,'IcoFont')">
-        {{icon.key}}
-      </button>
-    </div>
-  </mat-menu>
+    <mat-menu #Icofont="matMenu">
+      <div *ngFor="let icon of IconPicker.IcoFont | keyvalue">
+        <button mat-menu-item (click)="selectIcon(selectedOption = icon.key,'IcoFont')">
+          {{icon.key}}
+        </button>
+      </div>
+    </mat-menu>
+  </div>
 
+  <div class="child2">
+    <button [style.background-color]="toggleS?'#A9A9A9':'#DCDCDC'" class="myButton" (click)="sizeToggle(20)">
+      S</button>
+    <button [style.background-color]="toggleM?'#A9A9A9':'#DCDCDC'" class="myButton" (click)="sizeToggle(30)">
+     M</button>
+    <button [style.background-color]="toggleL?'#A9A9A9':'#DCDCDC'" class="myButton" (click)="sizeToggle(40)">
+      L</button>
+  </div>
   <!--Search Bar-->
-  <div class="top-right">
+  <div class="child3">
     <input type="text" name="Search" placeholder="Search for an Icon" [(ngModel)]="term">
     &nbsp;<button style="background-color: #e7e7e7;" (click)="Clear()">clear</button>
   </div>
@@ -49,21 +59,21 @@
                     <ng-container *ngIf="category.key ==='IcoFont' ">
                       <ng-container>
                         <div class="row center">
-                          <mat-icon (click)="changeIcon(icon)"> <span [class]="icon"></span>
+                          <mat-icon [style.fontSize.px]="fontSize" [style.width]="'auto'" (click)="changeIcon(icon)"> <span [class]="icon"></span>
                           </mat-icon>
                         </div>
                         <div class="row center">
-                          <span class="icon-item-title" (click)="changeIcon(icon)">{{ (icon | slice:8) }}</span>
+                          <span class="icon-item-title" [style.fontSize.px]="titleSize" (click)="changeIcon(icon)">{{ (icon | slice:8) }}</span>
                         </div>
                       </ng-container>
                     </ng-container>
                     <ng-container *ngIf="category.key ==='Material' ">
                       <ng-container>
                         <div class="row center">
-                          <mat-icon (click)="changeIcon(icon)"> <span class="material-icons">{{icon}}</span> </mat-icon>
+                          <mat-icon [style.fontSize.px]="fontSize" [style.width]="'auto'" (click)="changeIcon(icon)"> <span class="material-icons">{{icon}}</span> </mat-icon>
                         </div>
                         <div class="row center">
-                          <span class="icon-item-title" (click)="changeIcon(icon)"
+                          <span class="icon-item-title" [style.fontSize.px]="titleSize" (click)="changeIcon(icon)"
                             style="word-wrap: break-word;">{{icon}}</span>
                         </div>
                       </ng-container>
@@ -99,11 +109,11 @@
                     <div class="center" style="padding-top:10px">
                       <ng-container>
                         <div class="row center">
-                          <mat-icon (click)="changeIcon(icon)"> <span [class]="icon"></span>
+                          <mat-icon [style.fontSize.px]="fontSize" [style.width]="'auto'" (click)="changeIcon(icon)"> <span [class]="icon"></span>
                           </mat-icon>
                         </div>
                         <div class="row center">
-                          <span class="icon-item-title" (click)="changeIcon(icon)">{{ (icon | slice:8) }}</span>
+                          <span class="icon-item-title" [style.fontSize.px]="titleSize" (click)="changeIcon(icon)">{{ (icon | slice:8) }}</span>
                         </div>
                       </ng-container>
                     </div>
@@ -130,10 +140,10 @@
                     <div class="center" style="padding-top:10px">
                       <ng-container>
                         <div class="row center">
-                          <mat-icon (click)="changeIcon(icon)"> <span class="material-icons">{{icon}}</span> </mat-icon>
+                          <mat-icon [style.fontSize.px]="fontSize" [style.width]="'auto'" (click)="changeIcon(icon)"> <span class="material-icons">{{icon}}</span> </mat-icon>
                         </div>
                         <div class="row center">
-                          <span class="icon-item-title" (click)="changeIcon(icon)"
+                          <span class="icon-item-title" [style.fontSize.px]="titleSize" (click)="changeIcon(icon)"
                             style="word-wrap: break-word;">{{icon}}</span>
                         </div>
                       </ng-container>
@@ -172,24 +182,28 @@
               <div class="row" style="display:flex;">
                 <ng-container>
                   <div class="col-sm-2" *ngFor="let icon of subdiv.value | slice:0:6;" title={{icon}}>
-                    <div class="center" style="padding-top:10px">
+                    <div class="center" style="padding:10px">
                       <ng-container *ngIf="category.key ==='IcoFont' ">
-                        <div class="row center">
-                          <mat-icon (click)="changeIcon(icon)"> <span [class]="icon"></span>
+                        <div id="wrapper">
+                        <div id="inner1">
+                          <mat-icon [style.fontSize.px]="fontSize" [style.width]="'auto'" (click)="changeIcon(icon)"> <span [class]="icon"></span>
                           </mat-icon>
                         </div>
-                        <div class="row center">
-                          <span class="icon-item-title" (click)="changeIcon(icon)">{{ (icon | slice:8) }}</span>
+                        <div id="inner2">
+                          <span [style.fontSize.px]="titleSize" class="icon-item-title" (click)="changeIcon(icon)" >{{ (icon | slice:8) }}</span>
                         </div>
+                      </div>
                       </ng-container>
                       <ng-container *ngIf="category.key ==='Material' ">
-                        <div class="row center">
-                          <mat-icon (click)="changeIcon(icon)"> <span class="material-icons">{{icon}}</span> </mat-icon>
+                        <div id="wrapper">
+                        <div id="inner1">
+                          <mat-icon [inline]="true" [style.fontSize.px]="fontSize" [style.width]="'auto'" (click)="changeIcon(icon)"> <span class="material-icons">{{icon}}</span> </mat-icon>
                         </div>
-                        <div class="row center">
-                          <span class="icon-item-title" (click)="changeIcon(icon)"
+                        <div id="inner2">
+                          <span class="icon-item-title" [style.fontSize.px]="titleSize" (click)="changeIcon(icon)"
                             style="word-wrap: break-word;">{{icon}}</span>
                         </div>
+                      </div>
                       </ng-container>
                     </div>
                   </div>
@@ -200,24 +214,28 @@
                 name="toggle" [ngModelOptions]="{standalone: true}" class="row">
 
                 <div class="col-sm-2 " *ngFor="let icon of subdiv.value | slice:6;" title={{icon}}>
-                  <div class="center" style="padding-top:10px">
+                  <div class="center" style="padding:5px">
                     <ng-container *ngIf="category.key ==='IcoFont' ">
-                      <div class="row center">
-                        <mat-icon (click)="changeIcon(icon)"> <span [class]="icon"></span>
+                      <div id="wrapper">
+                      <div id="inner1">
+                        <mat-icon [style.fontSize.px]="fontSize" (click)="changeIcon(icon)"> <span [class]="icon"></span>
                         </mat-icon>
                       </div>
-                      <div class="row center">
-                        <span class="icon-item-title" (click)="changeIcon(icon)">{{(icon | slice:8)}}</span>
+                      <div id="inner2">
+                        <span class="icon-item-title" [style.fontSize.px]="titleSize" (click)="changeIcon(icon)">{{(icon | slice:8)}}</span>
                       </div>
+                    </div>
                     </ng-container>
                     <ng-container *ngIf="category.key ==='Material' ">
-                      <div class="row center">
-                        <mat-icon (click)="changeIcon(icon)"> <span class="material-icons">{{icon}}</span> </mat-icon>
+                      <div id="wrapper">
+                      <div id="inner1">
+                        <mat-icon [style.fontSize.px]="fontSize" (click)="changeIcon(icon)"> <span class="material-icons">{{icon}}</span> </mat-icon>
                       </div>
-                      <div class="row center">
-                        <span class="icon-item-title" (click)="changeIcon(icon)"
+                      <div id="inner2">
+                        <span class="icon-item-title" [style.fontSize.px]="titleSize" (click)="changeIcon(icon)"
                           style="word-wrap: break-word;">{{icon}}</span>
                       </div>
+                    </div>
                     </ng-container>
                   </div>
                 </div>

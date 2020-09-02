@@ -1,7 +1,7 @@
 <div class="position">
   <mat-card class="parent">
-    <div class="icon">
-      <mat-icon [inline]="true" [class]="className">{{iconName}}</mat-icon>
+    <div>
+      <mat-icon [style.fontSize.px]="fontSize" [class]="className">{{iconName}}</mat-icon>
     </div>
     <div>
       <button class="button-bg" mat-raised-button (click)="openDialog()">Pick Icon</button>

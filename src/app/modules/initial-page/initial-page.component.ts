@@ -13,18 +13,20 @@ export class InitialPageComponent implements OnInit {
   public iconName = '';
   public className = '';
   public dialogRef;
+  public fontSize;
 
   constructor(private dashboardService: IconService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dashboardService.resultI$.subscribe(
-      (icon) => {
+      (data) => {
         this.dialogRef.close();
-        if (icon.includes('icofont')) {
+        this.fontSize = data.size;
+        if (data.icon.includes('icofont')) {
           this.iconName = '';
-          this.className = icon;
+          this.className = data.icon;
         } else {
-          this.iconName = icon;
+          this.iconName = data.icon;
           this.className = 'material-icons';
         }
       });

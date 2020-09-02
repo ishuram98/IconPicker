@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IconService } from './../icon.service';
+import { IconService, Values } from './../icon.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -9,15 +9,20 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class IconPickComponent implements OnInit {
 
+  private values: Values;
 
-  public fixIcon: string;
   public IcofontSubcategory;
   public MaterialSubcategory;
   public name = '';
   public titleChosen = 'Icon Categories';
   hideAll = true;
   hideCategory = true;
+  toggleS = true ;
+  toggleM: boolean;
+  toggleL: boolean;
   public term = '';
+  fontSize = 20;
+  titleSize = 14;
 
 
   public IconPicker = {
@@ -535,10 +540,37 @@ export class IconPickComponent implements OnInit {
     subdiv.toggleIcon = !subdiv.toggleIcon;
   }
 
+  sizeToggle(size: number): void {
+    if (size === 20) {
+      this.toggleS = true;
+      this.toggleM = false;
+      this.toggleL = false;
+      this.fontSize = 20;
+      this.titleSize = 14;
+    }
+    if (size === 30) {
+      this.toggleS = false;
+      this.toggleM = true;
+      this.toggleL = false;
+      this.fontSize = 30;
+      this.titleSize = 14;
+    }
+    if (size === 40) {
+      this.toggleS = false;
+      this.toggleM = false;
+      this.toggleL = true;
+      this.fontSize = 40;
+      this.titleSize = 14;
+    }
+  }
+
 
   public changeIcon(newIcon: string): void {
-    this.fixIcon = newIcon;
-    this.dashboardService.sendIcon(this.fixIcon);
+    this.values = {
+      icon: newIcon,
+      size: this.fontSize,
+    };
+    this.dashboardService.sendIcon(this.values);
   }
 
   public displayAll(): void {
